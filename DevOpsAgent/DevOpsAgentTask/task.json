@@ -1,0 +1,136 @@
+{
+    "id": "5ceede30-398e-4d6f-cdaf-ed14d04aa851",
+    "name": "AzureDevOpsAgentRegisterTask",
+    "friendlyName": "akuzhanRegister DevOps Agent Task",
+    "description": "akuzhanRegister Register DevOps Agent Task",
+    "helpMarkDown": "",
+    "category": "Utility",
+    "visibility": [
+        "Build",
+        "Release"
+    ],
+    "author": "akuzhan",
+    "version": {
+        "Major": 0,
+        "Minor": 0,
+        "Patch": 12
+    },
+    "instanceNameFormat": "Register DevOps Agent Task",
+    "groups": [
+    ],
+  "inputs": [
+    {
+      "name": "ConnectedServiceNameSelector",
+      "type": "pickList",
+      "label": "Azure Connection Type",
+      "required": true,
+      "helpMarkDown": "",
+      "defaultValue": "ConnectedServiceNameARM",
+      "options": {
+        "ConnectedServiceNameARM": "Azure Resource Manager"
+      }
+    },
+    {
+      "name": "ConnectedServiceNameARM",
+      "type": "connectedService:AzureRM",
+      "label": "AzureRM Subscription",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Select the Azure Resource Manager subscription."
+    },
+    {
+      "name": "ResourceGroupName",
+      "type": "pickList",
+      "label": "Resource Group Name",
+      "required": true,
+      "helpMarkDown": "Provide the name of the VM Resource Group.",
+      "properties": {
+        "EditableOptions": "True"
+      }
+    },
+    {
+      "name": "VirtualMachineName",
+      "type": "string",
+      "label": "Virtual Machine Name",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Virtual Machine Name"
+    },
+    {
+      "name": "AzureDevOpsInstanceURL",
+      "type": "string",
+      "label": "AzureDevOpsInstanceURL",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Azure DevOps Instance URL"
+    },
+    {
+      "name": "InstanceName",
+      "type": "pickList",
+      "label": "InstanceName",
+      "defaultValue": "INV",
+      "required": true,
+      "options": {
+        "X": "X",
+        "Y": "Y",
+        "Z": "Z"
+      },
+      "helpMarkDown": "DevOps Agent Instance Name",
+      "properties": {
+        "EditableOptions": "True"
+      }
+    },
+    {
+      "name": "PatToken",
+      "type": "string",
+      "label": "PatToken",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Personal Access Token"
+    },
+    {
+      "name": "AgentPoolName",
+      "type": "string",
+      "label": "AgentPoolName",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Azure DevOps Agent Pool Name"
+    },
+    {
+      "name": "UserEmailAddress",
+      "type": "string",
+      "label": "UserEmailAddress",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "User Email Address"
+    },
+    {
+      "name": "Password",
+      "type": "string",
+      "label": "Password",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "User Password"
+    }
+  ],
+	"dataSourceBindings": [
+        {
+            "target": "ResourceGroupName",
+            "endpointId": "$(ConnectedServiceNameARM)",
+            "dataSourceName": "AzureResourceGroups"
+        }
+    ],
+    "execution": {
+        "PowerShell3": {
+            "target": "run.ps1"
+        }
+    },
+	"prejobexecution": {
+        "PowerShell3": {
+            "target": "prejob.ps1",
+            "platforms": [
+                "windows"
+            ]
+        }
+    }
+}

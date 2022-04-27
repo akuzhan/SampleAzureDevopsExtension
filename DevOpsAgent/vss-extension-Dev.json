@@ -1,0 +1,50 @@
+{
+    "manifestVersion": 1,
+    "id": "akuzhan-DevOpsAgent-deployment-task",
+    "name": "akuzhan DevOps Agent Registration Task - Dev",
+    "version": "0.0.12",
+    "publisher": "akuzhan-CST-Dev",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "akuzhan DevOps Agent Registration Task -Dev",
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "icons": {
+        "default": "icon.png"        
+    },
+	 "screenshots": [
+        {
+            "path": "images/image.png"
+        }
+    ],
+    "files": [
+        {
+            "path": "DevOpsAgentTask"
+        },
+        {
+            "path": "images/image.png",
+            "addressable": true
+        }
+    ],
+    "content": {
+        "details": {
+            "path": "Marketplace.md"
+        }
+    },
+    "contributions": [
+        {
+            "id": "custom-build-release-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "DevOpsAgentTask"
+            }
+        }
+    ]
+}
